@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+
+<h:head>
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta charset="utf-8" />
+	</f:facet>
+	<title>IESGF</title>
+	<link rel="shortcut icon"
+		href="#{facesContext.externalContext.request.contextPath}/resources/imagens/favicon.ico" />
+
+	<h:outputScript name="js/ripple-effect.js" library="rio-layout" />
+	<h:outputScript name="js/perfect-scrollbar.js" library="rio-layout" />
+	<h:outputScript name="js/layout.js" library="rio-layout" />
+	<ui:insert name="head" />
+
+</h:head>
+
+<h:body>
+	<script type="text/javascript">
+			function finaliza() {
+				window.location.href = "#{facesContext.externalContext.request.contextPath}/logout";
+			}		
+
+			function mostraMenu() {
+				var estiloIdMenu = $("#layout-menu-cover").css("display");
+				if (estiloIdMenu == "block") {
+					$("#layout-menu-cover").css("display", "none");
+					$("#layout-portlets-cover").css("margin-left", "0");
+				    ico = "icon-add";
+				} else {
+					$("#layout-menu-cover").css("display", "block");
+					$("#layout-portlets-cover").css("margin-left", "240px");
+					ico = "icon-subtract";
+				}
+			}
+
+		</script>
+
+	<p:idleMonitor timeout="1800000">
+		<p:ajax event="idle" oncomplete="javascript:finaliza();" />
+	</p:idleMonitor>
+
+	<p:growl id="msgGrowl" showDetail="true" globalOnly="true" sticky="false" life="3200" />
+
+	<ui:include src="topbar.xhtml" />
+
+	<div id="wrapper">
+
+		<div id="wrapperIndent">
+
+			<ui:include src="layoutmenu.xhtml" />
+
+			<div id="layout-portlets-cover" style="margin-left: 0px;">
+				<ui:insert name="principal">
+				</ui:insert>
+
+				<div class="Container100">
+					<div class="ContainerIndent Fs12 BoldGray FontRobotoRegular">
+						<div class="EmptyBox10"></div>
+						<i class="fa-copyrigth Fs16 Fleft"></i> IESGF | Todos os Direitos
+						Reservados.
+						<div class="EmptyBox10"></div>
+					</div>
+				</div>
+			</div>
+
+			<p:ajaxStatus
+				style="width:32px;height:32px;position:fixed;right:7px;bottom:7px">
+				<f:facet name="start">
+					<p:graphicImage name="images/preloader.gif" library="rio-layout" />
+				</f:facet>
+
+				<f:facet name="complete">
+					<h:outputText value="" />
+				</f:facet>
+			</p:ajaxStatus>
+		</div>
+	</div>
+
+	<h:outputStylesheet name="css/core-layout.css" library="rio-layout" />
+	<h:outputStylesheet name="css/animate.css" library="rio-layout" />
+	<h:outputStylesheet name="css/rio-font.css" library="rio-layout" />
+	<h:outputStylesheet name="css/ripple-effect.css" library="rio-layout" />
+	<h:outputStylesheet name="css/perfect-scrollbar.css" library="rio-layout" />
+	<h:outputStylesheet name="css/font-awesome.css" library="rio-layout" />
+	<h:outputStylesheet name="css/rio-layout.css" library="rio-layout" />
+
+	<h:outputStylesheet name="css.css" library="css" />
+</h:body>
+
+<p:dialog modal="false" id="idCarregando" widgetVar="dlgCarregando"
+	draggable="false" resizable="false" showHeader="false" closable="false">
+	<h:graphicImage library="imagens" name="carregando.gif" />
+</p:dialog>
+
+</html>

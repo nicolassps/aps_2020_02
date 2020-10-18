@@ -1,0 +1,98 @@
+html, body{
+	margin: 0;
+	padding: 0;
+	height: 100vh;
+}
+
+body{
+	display:flex;
+	justify-content:center;
+	background-image: linear-gradient(var(--main-color), var(--main-color-h));
+
+	align-items:center;
+}
+
+* {
+	box-sizing:border-box;
+}
+
+.pn-middle input {
+	width: 70%;
+}
+
+.pn-middle{
+	background-color: var(--main-light-color);
+	padding: 20px;
+	border-radius: 10px;
+	
+	min-height: 50vh;
+	min-width: 70vw;
+	
+	display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    
+    text-align:center
+}
+
+.pn-middle tbody{
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+}
+
+.pn-footer{
+	width: 100%;
+    position: fixed;
+    bottom: 0;
+    background-color: var(--main-light-color);
+    padding: 20px;
+    text-align: center;
+    font-family: system-ui;
+}
+
+.er-title {
+	margin: 0;
+	font-size: 5em;
+    color: var(--main-color);
+    font-family: monospace;
+}
+
+.er-description{
+	font-family: monospace;
+    font-size: 3em;
+    padding: 10px;
+    width: 50%;
+}
+
+@media only screen and (max-width: 700px) {
+  .er-description {
+    font-size: 100%;
+  }
+}
+
+.ct-desc{
+	display:flex;
+	justify-content: center;
+    align-items: center;
+}
+
+.btn-voltar{
+	    padding: 10px;
+    background-color: var(--main-color);
+    transition: all 0.5s;
+    border: none;
+    color: var(--main-light-color);
+    border-radius: 5px;
+    width: 200px;
+    text-decoration: none;
+    align-self: center;
+    font-family: monospace;
+}
+
+
+
+.btn-voltar:hover{
+	background-color: var(--main-color-h);
+	cursor: pointer;
+}

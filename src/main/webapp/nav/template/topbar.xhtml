@@ -1,0 +1,34 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<div id="layout-topbar">
+		<div id="logo" class="Fleft">
+			<a
+				href="#{facesContext.externalContext.request.contextPath}/nav/dashboard.jsf">
+				<p:graphicImage id="imagemEmpresa" cache="false"
+					library="imagens" name="floram.png"
+					style="width: 50px; height: 50px; margin-top: 3px;" />
+			</a>
+			<a id="mobile-menu-button"
+				class="Fright ripplelink Unselectable ShadowEffect"
+				onclick="javascript:mostraMenu();"><i class="icon-menu Fs20"
+				title="Mostra/Esconde Menu"></i></a>
+		</div>
+
+		<a class="ripplelink WhiteBlue Fright ShowOnMobile" id="show-top-menu">
+			<i class="icon-show8"></i>
+		</a>
+
+		<ul id="top-menu" class="ShowOnDesktop">
+			<li><a title="Sair"
+				href="#{facesContext.externalContext.request.contextPath}/logout"
+				class="ripplelink"> <i class="icon-change3"></i> <span
+					class="Txt">Sair</span>
+			</a></li>
+		</ul>
+	</div>
+</ui:composition>

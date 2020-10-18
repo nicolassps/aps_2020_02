@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+	</f:facet>
+	<title>FLORAM - Fiscalização</title>
+	<link rel="shortcut icon"
+		href="#{facesContext.externalContext.request.contextPath}/resources/imagens/favicon.ico" />
+
+</h:head>
+
+<h:body>
+
+	<div class="pn-middle">
+	
+		<h1 class="er-title">500</h1>
+
+		<div class="ct-desc">
+			<p:graphicImage library="imagens" name="floram.png" height="100" width="100"></p:graphicImage>
+		
+			<h2 class="er-description">Ops, estamos com problemas tente mais tarde</h2>
+		</div>
+		
+		<a href="#{facesContext.externalContext.request.contextPath}/login.jsf" class="btn-voltar">Voltar para o inicio</a>
+		
+	</div>
+	
+	<div class="pn-footer">
+		<i class="fa fa-copyright"></i> IESGF <br /> Todos os Direitos Reservados.
+	</div>
+
+	<h:outputStylesheet name="error.css" library="css" />
+	<h:outputStylesheet name="var.css" library="css" />
+</h:body>
+</html>
