@@ -3,8 +3,6 @@ package br.com.alpoo.engine;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.data.util.Pair;
-
 import br.com.alpoo.engine.enums.Movimento;
 import br.com.alpoo.engine.exception.MovimentoException;
 import br.com.alpoo.util.Indice;
@@ -39,12 +37,8 @@ public class TabuleiroUtils {
 		Indice origem = coordenadaMovimentacao(tabuleiro);
 		Indice destino = new Indice(origem.getLine() + movimento.getL(), origem.getColumn() + movimento.getC()); 
 		
-		
-		return tabuleiro;
-	}
-	
-	public static Integer[][] alteraValor(Integer[][] tabuleiro, Indice indice, Integer valor){
-		tabuleiro[indice.getLine()][indice.getColumn()] = valor;
+		alteraValor(tabuleiro, origem, tabuleiro[destino.getLine()][destino.getColumn()]);
+		alteraValor(tabuleiro, destino, 0);
 		
 		return tabuleiro;
 	}
@@ -101,5 +95,11 @@ public class TabuleiroUtils {
 	 * */
 	private static Indice coordenadaFinalMovimento(Indice origem, Movimento movimento){
 		return new Indice(origem.getLine() + movimento.getL(), origem.getColumn() + movimento.getC()); 
+	}
+
+	private static Integer[][] alteraValor(Integer[][] tabuleiro, Indice indice, Integer valor){
+		tabuleiro[indice.getLine()][indice.getColumn()] = valor;
+		
+		return tabuleiro;
 	}
 }
