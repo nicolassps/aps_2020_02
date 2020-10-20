@@ -29,6 +29,25 @@ public class TabuleiroUtils {
 		return t;
 	}
 	
+	public static Boolean jogoEncerrado(Integer [][] tabuleiro) {
+		Boolean resultado = Boolean.TRUE;
+		
+		int sequencia = 1;
+		for (int i = 0; i < LINES; i++) {
+			for (int j = 0; j < COLS; j++) {
+				resultado = tabuleiro.length == (i + 1) && tabuleiro[i].length == (j + 1)
+								?
+									resultado && tabuleiro [i][j] == 0
+								:
+									resultado && tabuleiro [i][j] == sequencia;
+				
+				sequencia++;
+			}
+		}
+		
+		return resultado;
+	}
+	
 	public static Integer[][] movimentoTabuleiro(Integer[][] tabuleiro, Movimento movimento) throws MovimentoException{
 		if(!isMovimentoPermitido(tabuleiro, movimento)) {
 			throw new MovimentoException(MensagemEnum.MENSAGEM_MOVIMENTO_ILEGAL.value(), movimento, movimentosPermitidos(tabuleiro));
