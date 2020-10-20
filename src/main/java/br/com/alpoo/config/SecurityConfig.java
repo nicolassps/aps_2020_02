@@ -26,7 +26,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         
         http.authenticationProvider(login);
         
-        http.formLogin().loginPage("/login.jsf").loginProcessingUrl("/login").usernameParameter("username").passwordParameter("password").failureUrl("/login.jsf?error=true").defaultSuccessUrl("/nav/dashboard.jsf", true); 
+        http.formLogin().loginPage("/login.jsf").loginProcessingUrl("/login").usernameParameter("username").passwordParameter("password").failureUrl("/login.jsf?error=true").defaultSuccessUrl("/jogo/jogo.jsf", true); 
         http.logout().logoutUrl("/logout").invalidateHttpSession(true).logoutSuccessUrl("/login.jsf");
         http.csrf().disable();
     }

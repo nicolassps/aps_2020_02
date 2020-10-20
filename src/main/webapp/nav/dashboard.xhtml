@@ -8,7 +8,14 @@
 
 <ui:composition template="#{env.template}">
 	<ui:define name="principal">
-	
+		<h:form>
+
+			<p:dataGrid>
+				<p:columns value="#{jogoMB.listaTabuleiro}" var="tabu"
+					headerText="{tabu}" />
+			</p:dataGrid>
+
+		</h:form>
 	</ui:define>
 </ui:composition>
 </html>
