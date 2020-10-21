@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import br.com.alpoo.jogo.entity.PerguntaSeguranca;
+
 
 @Entity
 @Table(name = "usuario", schema = "alpoo")
@@ -23,7 +25,7 @@ public class Usuario implements Serializable{
 	private String usrNome;
 	private String usrLogin;
 	private String usrSenha;
-	private Integer perCodigo;
+	private PerguntaSeguranca perguntaSeguranca;
 	
 	@Id
 	@Column(name="usr_codigo")
@@ -59,13 +61,13 @@ public class Usuario implements Serializable{
 		this.usrSenha = usrSenha;
 	}
 	
-	@ManyToOne(targetEntity = PerguntaSeguranca.class)
-	@JoinColumn(name="per_codigo", referencedColumnName = "per_codigo")
-	public Integer getPerCodigo() {
-		return perCodigo;
+	@ManyToOne
+	@JoinColumn(name="per_codigo")
+	public PerguntaSeguranca getPerguntaSeguranca() {
+		return perguntaSeguranca;
 	}
-	public void setPerCodigo(Integer perCodigo) {
-		this.perCodigo = perCodigo;
+	public void setPerguntaSeguranca(PerguntaSeguranca perguntaSeguranca) {
+		this.perguntaSeguranca = perguntaSeguranca;
 	}
 	
 	@Override
@@ -75,6 +77,7 @@ public class Usuario implements Serializable{
 		result = prime * result + ((usrCodigo == null) ? 0 : usrCodigo.hashCode());
 		return result;
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

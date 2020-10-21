@@ -10,16 +10,18 @@
 	<ui:define name="principal">
 		<h:form>
 
-			<p:hotkey bind="a" action="#{jogoMB.move('Esquerda')}" update="dgTabuleiro"/>
-			<p:hotkey bind="s" action="#{jogoMB.move('Baixo')}" update="dgTabuleiro" />
-			<p:hotkey bind="d" action="#{jogoMB.move('Direita')}" update="dgTabuleiro"/>
-			<p:hotkey bind="w" action="#{jogoMB.move('Cima')}" update="dgTabuleiro" />
+			<p:hotkey bind="a" action="#{jogoController.move('Esquerda')}" update="dgTabuleiro"/>
+			<p:hotkey bind="s" action="#{jogoController.move('Baixo')}" update="dgTabuleiro" />
+			<p:hotkey bind="d" action="#{jogoController.move('Direita')}" update="dgTabuleiro"/>
+			<p:hotkey bind="w" action="#{jogoController.move('Cima')}" update="dgTabuleiro" />
 
-			<p:dataTable value="#{jogoMB.listaTabuleiro}" var="t" id="dgTabuleiro">
+			<p:dataGrid value="#{jogoController.listaTabuleiro}" var="t" id="dgTabuleiro">
 				<p:column>
 					<p:outputLabel value="#{t}" />
 				</p:column>
-			</p:dataTable>
+			</p:dataGrid>
+			
+			<p:commandButton action="#{jogoController.salvaJogo()}"></p:commandButton>
 		</h:form>
 	</ui:define>
 </ui:composition>

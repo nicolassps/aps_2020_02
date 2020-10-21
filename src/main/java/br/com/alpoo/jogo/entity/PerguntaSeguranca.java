@@ -1,4 +1,4 @@
-package br.com.alpoo.acesso.entity;
+package br.com.alpoo.jogo.entity;
 
 import java.io.Serializable;
 

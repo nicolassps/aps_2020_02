@@ -1,4 +1,4 @@
-package br.com.alpoo.acesso.entity;
+package br.com.alpoo.jogo.entity;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -13,18 +13,20 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-import org.primefaces.component.dashboard.Dashboard;
+import br.com.alpoo.acesso.entity.Usuario;
 
 @Entity
 @Table(name = "jogo", schema = "alpoo")
 @SequenceGenerator(name = "JOGO_GENERATOR", sequenceName = "SEQ_JOGO", allocationSize = 1)
 public class Jogo implements Serializable {
 
+	private static final long serialVersionUID = 5921163327127610221L;
+	
 	private Integer jogCodigo;
-	private Byte jogEstado;
+	private byte[] jogEstado;
 	private Date jogDataCriacao;
 	private Date jogDataAtualizacao;
-	private Integer usrCodigo;
+	private Usuario usuario;
 	
 	@Id
 	@Column(name="jog_codigo")
@@ -38,10 +40,10 @@ public class Jogo implements Serializable {
 	}
 	
 	@Column(name="jog_estado")
-	public Byte getJogEstado() {
+	public byte[] getJogEstado() {
 		return jogEstado;
 	}
-	public void setJogEstado(Byte jogEstado) {
+	public void setJogEstado(byte[] jogEstado) {
 		this.jogEstado = jogEstado;
 	}
 	
@@ -61,14 +63,16 @@ public class Jogo implements Serializable {
 		this.jogDataAtualizacao = jogDataAtualizacao;
 	}
 	
-	@ManyToOne(targetEntity = Usuario.class)
-	@JoinColumn(name="usr_codigo", referencedColumnName = "usr_codigo")
-	public Integer getUsrCodigo() {
-		return usrCodigo;
+	@ManyToOne
+	@JoinColumn(name="usr_codigo")
+	public Usuario getUsuario() {
+		return usuario;
 	}
-	public void setUsrCodigo(Integer usrCodigo) {
-		this.usrCodigo = usrCodigo;
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -76,6 +80,7 @@ public class Jogo implements Serializable {
 		result = prime * result + ((jogCodigo == null) ? 0 : jogCodigo.hashCode());
 		return result;
 	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

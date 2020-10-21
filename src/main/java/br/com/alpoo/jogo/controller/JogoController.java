@@ -3,24 +3,49 @@ package br.com.alpoo.jogo.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+import br.com.alpoo.acesso.entity.Usuario;
+import br.com.alpoo.acesso.service.UsuarioService;
 import br.com.alpoo.engine.TabuleiroUtils;
 import br.com.alpoo.engine.enums.Movimento;
 import br.com.alpoo.engine.exception.MovimentoException;
+import br.com.alpoo.jogo.entity.Jogo;
+import br.com.alpoo.jogo.service.JogoService;
 
-@Component (value = "jogoMB")
+@Component (value = "jogoController")
 @Scope("view")
-public class JogoMB {
+public class JogoController {
 
 	private Integer[][] tabuleiro;
 	private List<Integer> listaTabuleiro;
+	private Usuario usuario;
+	private Jogo jogo;
 	
-	public JogoMB() {
+	public JogoController() {
+	
+	}
+	
+	@Autowired
+	private JogoService jogoService;
+	
+	@Autowired
+	private UsuarioService usuarioService;
+	
+	@PostConstruct
+	private void Inicializa() {
 		tabuleiro = TabuleiroUtils.initTabuleiro();
-		listaTabuleiro = new ArrayList<Integer>();
+		usuario = usuarioService.getById(1);
+		jogo = jogoService.getJogoByUsuario(1);
+		if(jogo == null) {
+			listaTabuleiro = new ArrayList<Integer>();
+		}else {
+			listaTabuleiro = jogoService.retornaListaJogo(jogo.getJogEstado());
+		}
 		montaTabuleiro();
 	}
 
@@ -40,6 +65,14 @@ public class JogoMB {
 			montaTabuleiro();
 		} catch (MovimentoException e) {
 			
+		}
+	}
+	
+	public void salvaJogo() {
+		try {
+			jogo = jogoService.salva(listaTabuleiro, usuario);
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
