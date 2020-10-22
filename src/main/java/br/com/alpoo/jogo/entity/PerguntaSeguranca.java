@@ -18,7 +18,7 @@ public class PerguntaSeguranca implements Serializable{
 	private static final long serialVersionUID = 1340111959848797256L;
 	private Integer pesCodigo;
 	private String pesPergunta;
-	private String pesResposta;
+//	private String pesResposta;
 	
 	@Id
 	@Column(name="per_codigo")
@@ -37,13 +37,13 @@ public class PerguntaSeguranca implements Serializable{
 	public void setPesPergunta(String pesPergunta) {
 		this.pesPergunta = pesPergunta;
 	}
-	@Column(name="pes_resposta")
-	public String getPesResposta() {
-		return pesResposta;
-	}
-	public void setPesResposta(String pesResposta) {
-		this.pesResposta = pesResposta;
-	}
+//	@Column(name="pes_resposta")
+//	public String getPesResposta() {
+//		return pesResposta;
+//	}
+//	public void setPesResposta(String pesResposta) {
+//		this.pesResposta = pesResposta;
+//	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

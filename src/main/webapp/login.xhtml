@@ -14,9 +14,9 @@
 			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 		<meta name="apple-mobile-web-app-capable" content="yes" />
 	</f:facet>
-	<title>FLORAM - Fiscalização</title>
+	<title>IESGF</title>
 	<link rel="shortcut icon"
-		href="#{facesContext.externalContext.request.contextPath}/resources/imagens/favicon.ico" />
+		href="#{facesContext.externalContext.request.contextPath}/resources/imagens/logo_ies.ico" />
 
 	<h:outputScript name="js/ripple-effect.js" library="rio-layout" />
 	<h:outputScript name="js/perfect-scrollbar.js" library="rio-layout" />
@@ -25,40 +25,55 @@
 
 <h:body>
 	<div class="pn-middle">
-		<form id="form" action="/login" method="post" >
+		<form id="form" action="/login" method="post">
 			<h:panelGrid columns="1" style="width: 100%">
-			
+
 				<p:column>
-					<p:graphicImage height="150" library="imagens" name="floram.png"></p:graphicImage>
+					<p:graphicImage height="100" library="imagens" name="logo_ies.png"></p:graphicImage>
 				</p:column>
-				
+
+				<p:separator />
+
 				<p:column>
-					<p:inputText type="text" id="username" name="username" placeholder="Login"></p:inputText>
+					<p:inputText type="text" id="username" name="username"
+						placeholder="Login"></p:inputText>
 				</p:column>
-				
+
 				<p:column>
-					<p:inputText type="password" id="password" name="password" placeholder="Senha"></p:inputText>
+					<p:inputText type="password" id="password" name="password"
+						placeholder="Senha"></p:inputText>
 				</p:column>
-				
+
+				<p:column rendered="#{loginController.esqueciSenha}" id="resposta">
+					<p:inputText type="text" id="userPergunta" name="userPergunta"
+						placeholder="Resposta de Segurança"></p:inputText>
+				</p:column>
+
 				<p:column>
-					<h:commandButton styleClass="btn-submit" value="Enviar" ></h:commandButton>
+					<h:commandButton styleClass="btn-submit" value="Enviar"></h:commandButton>
 				</p:column>
-			
+
+				<p:column>
+					<p:commandButton action="#{loginController.esqueciMinhaSenha}" update="resposta" value="esqueci minha senha" />
+				</p:column>
+
+
+				<p:column>
+					<p:link outcome="registro.xhtml" value="Registrar-se"/>
+				</p:column>
+
+
 			</h:panelGrid>
-	  </form>
+		</form>
 	</div>
-	
-	<div class="pn-footer">
-		<i class="fa fa-copyright"></i> IESGF <br /> Todos os Direitos Reservados.
-	</div>
-	
+
 	<h:outputStylesheet name="css/core-layout.css" library="rio-layout" />
 	<h:outputStylesheet name="css/animate.css" library="rio-layout" />
 	<h:outputStylesheet name="css/rio-font.css" library="rio-layout" />
 	<h:outputStylesheet name="css/ripple-effect.css" library="rio-layout" />
 	<h:outputStylesheet name="css/font-awesome.css" library="rio-layout" />
 	<h:outputStylesheet name="css/rio-layout.css" library="rio-layout" />
-	
+
 	<h:outputStylesheet name="login.css" library="css" />
 	<h:outputStylesheet name="var.css" library="css" />
 </h:body>

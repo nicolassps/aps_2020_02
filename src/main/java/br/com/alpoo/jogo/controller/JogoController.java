@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -34,19 +36,19 @@ public class JogoController {
 	private JogoService jogoService;
 	
 	@Autowired
-	private UsuarioService usuarioService;
+	private SessaoController sessaoController;
 	
 	@PostConstruct
-	private void Inicializa() {
+	private void inicializa() {
 		tabuleiro = TabuleiroUtils.initTabuleiro();
-		usuario = usuarioService.getById(1);
-		jogo = jogoService.getJogoByUsuario(1);
+		usuario = sessaoController.getUsuarioLogado();
+		jogo = jogoService.getJogoByUsuario(usuario.getUsrCodigo());
 		if(jogo == null) {
 			listaTabuleiro = new ArrayList<Integer>();
+			montaTabuleiro();
 		}else {
 			listaTabuleiro = jogoService.retornaListaJogo(jogo.getJogEstado());
 		}
-		montaTabuleiro();
 	}
 
 	public void montaTabuleiro() {
@@ -55,8 +57,10 @@ public class JogoController {
 		for (int i = 0; i < TabuleiroUtils.LINES; i++) {
 			for (int j = 0; j < TabuleiroUtils.COLS; j++) {
 				listaTabuleiro.add(tabuleiro[i][j]);
+				encerraJogo();
 			}
 		}
+		
 	}
 	
 	public void move(String direcao) {
@@ -70,9 +74,17 @@ public class JogoController {
 	
 	public void salvaJogo() {
 		try {
-			jogo = jogoService.salva(listaTabuleiro, usuario);
+			jogo = jogoService.salva(listaTabuleiro, usuario, jogo);
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+	}
+	
+	public void encerraJogo() {
+		if(TabuleiroUtils.jogoEncerrado(tabuleiro)) {
+			salvaJogo();
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("IESGF", "Jogo concluido"));
+			
 		}
 	}
 	

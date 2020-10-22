@@ -1,6 +1,7 @@
 package br.com.alpoo.jogo.dao.impl;
 
 import java.io.Serializable;
+import java.util.List;
 
 import javax.persistence.Query;
 import org.springframework.stereotype.Repository;
@@ -17,13 +18,16 @@ public class JogoDAOImpl extends GenericDAOImpl<Jogo, Serializable> implements j
 		return save(jogo);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public Jogo getJogoByUsuario(Integer usrCodigo) {
-		String hql = "from jogo.usuario.usrCodigo = :usrCodigo";
+		String hql = " from Jogo j where j.usuario.usrCodigo = :usrCodigo";
 		Query query = em.createQuery(hql);
-		
 		query.setParameter("usrCodigo", usrCodigo);
-		return (Jogo) query.getSingleResult();
+		
+		List<Jogo> listaJogo = query.getResultList();
+		
+		return listaJogo.size() > 0 ? listaJogo.get(0) : null;
 	}
 
 }

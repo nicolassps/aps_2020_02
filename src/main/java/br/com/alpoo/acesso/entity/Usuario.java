@@ -26,6 +26,11 @@ public class Usuario implements Serializable{
 	private String usrLogin;
 	private String usrSenha;
 	private PerguntaSeguranca perguntaSeguranca;
+	private String usrRespostaSeguranca;
+	
+	public Usuario() {
+		this.perguntaSeguranca = new PerguntaSeguranca();
+	}
 	
 	@Id
 	@Column(name="usr_codigo")
@@ -70,6 +75,14 @@ public class Usuario implements Serializable{
 		this.perguntaSeguranca = perguntaSeguranca;
 	}
 	
+	
+	@Column(name="usr_resposta_seguranca")
+	public String getUsrRespostaSeguranca() {
+		return usrRespostaSeguranca;
+	}
+	public void setUsrRespostaSeguranca(String usrRespostaSeguranca) {
+		this.usrRespostaSeguranca = usrRespostaSeguranca;
+	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

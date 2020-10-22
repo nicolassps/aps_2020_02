@@ -18,7 +18,7 @@
 	</f:facet>
 	<title>IESGF</title>
 	<link rel="shortcut icon"
-		href="#{facesContext.externalContext.request.contextPath}/resources/imagens/favicon.ico" />
+		href="#{facesContext.externalContext.request.contextPath}/resources/imagens/logo_ies.ico" />
 
 	<h:outputScript name="js/ripple-effect.js" library="rio-layout" />
 	<h:outputScript name="js/perfect-scrollbar.js" library="rio-layout" />
@@ -29,32 +29,30 @@
 
 <h:body>
 	<script type="text/javascript">
-			function finaliza() {
-				window.location.href = "#{facesContext.externalContext.request.contextPath}/logout";
-			}		
+		function finaliza() {
+			window.location.href = "#{facesContext.externalContext.request.contextPath}/logout";
+		}
 
-			function mostraMenu() {
-				var estiloIdMenu = $("#layout-menu-cover").css("display");
-				if (estiloIdMenu == "block") {
-					$("#layout-menu-cover").css("display", "none");
-					$("#layout-portlets-cover").css("margin-left", "0");
-				    ico = "icon-add";
-				} else {
-					$("#layout-menu-cover").css("display", "block");
-					$("#layout-portlets-cover").css("margin-left", "240px");
-					ico = "icon-subtract";
-				}
+		function mostraMenu() {
+			var estiloIdMenu = $("#layout-menu-cover").css("display");
+			if (estiloIdMenu == "block") {
+				$("#layout-menu-cover").css("display", "none");
+				$("#layout-portlets-cover").css("margin-left", "0");
+				ico = "icon-add";
+			} else {
+				$("#layout-menu-cover").css("display", "block");
+				$("#layout-portlets-cover").css("margin-left", "240px");
+				ico = "icon-subtract";
 			}
-
-		</script>
+		}
+	</script>
 
 	<p:idleMonitor timeout="1800000">
 		<p:ajax event="idle" oncomplete="javascript:finaliza();" />
 	</p:idleMonitor>
 
-	<p:growl id="msgGrowl" showDetail="true" globalOnly="true" sticky="false" life="3200" />
-
-	<ui:include src="topbar.xhtml" />
+	<p:growl id="msgGrowl" showDetail="true" globalOnly="true"
+		sticky="false" life="3200" />
 
 	<div id="wrapper">
 
@@ -62,18 +60,11 @@
 
 			<ui:include src="layoutmenu.xhtml" />
 
-			<div id="layout-portlets-cover" style="margin-left: 0px;">
+			<div id="layout-portlets-cover"
+				style="margin-left: 0px; display: flex; flex-direction: column; justify-content: space-around; justify-content: center; background-image: linear-gradient(#1e90ff, #6495ed); align-items: center; height: 90%;">
 				<ui:insert name="principal">
 				</ui:insert>
 
-				<div class="Container100">
-					<div class="ContainerIndent Fs12 BoldGray FontRobotoRegular">
-						<div class="EmptyBox10"></div>
-						<i class="fa-copyrigth Fs16 Fleft"></i> IESGF | Todos os Direitos
-						Reservados.
-						<div class="EmptyBox10"></div>
-					</div>
-				</div>
 			</div>
 
 			<p:ajaxStatus
@@ -93,7 +84,8 @@
 	<h:outputStylesheet name="css/animate.css" library="rio-layout" />
 	<h:outputStylesheet name="css/rio-font.css" library="rio-layout" />
 	<h:outputStylesheet name="css/ripple-effect.css" library="rio-layout" />
-	<h:outputStylesheet name="css/perfect-scrollbar.css" library="rio-layout" />
+	<h:outputStylesheet name="css/perfect-scrollbar.css"
+		library="rio-layout" />
 	<h:outputStylesheet name="css/font-awesome.css" library="rio-layout" />
 	<h:outputStylesheet name="css/rio-layout.css" library="rio-layout" />
 

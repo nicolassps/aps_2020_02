@@ -22,13 +22,13 @@ public class JogoServiceImpl implements JogoService {
 
 	@Override
 	@Transactional
-	public Jogo salva(List<Integer> tabuleiro, Usuario usuario) {
-		Jogo jogo = new Jogo();
-		if(jogo.getJogDataCriacao() == null) {
+	public Jogo salva(List<Integer> tabuleiro, Usuario usuario, Jogo jogo) {
+		if(jogo == null) {
+			jogo = new Jogo();
 			jogo.setJogDataCriacao(new Date());
 		}
+		
 		byte[] arr = new byte[tabuleiro.size() + 1];
-
 		int index = 0;
 		for(Integer r : tabuleiro) {
 			arr[index] = r.byteValue();
@@ -50,10 +50,9 @@ public class JogoServiceImpl implements JogoService {
 	@Override
 	public List<Integer> retornaListaJogo(byte[] estadoJogo) {
 		List<Integer> lista = new ArrayList<Integer>();
-		for(int i = 0; i < 8; i++) {
+		for(int i = 0; i < estadoJogo.length -1 ; i++) {
 			int j = estadoJogo[i];
 			lista.add(j);
-			System.out.println(j);
 		}
 		return lista;
 	}

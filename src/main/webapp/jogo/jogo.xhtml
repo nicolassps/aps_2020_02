@@ -8,21 +8,26 @@
 
 <ui:composition template="#{env.template}">
 	<ui:define name="principal">
+		<div style="background-color: white; padding: 100px; border-radius: 20px; display: flex; justify-content: center; min-height: 50vh;" >
 		<h:form>
-
 			<p:hotkey bind="a" action="#{jogoController.move('Esquerda')}" update="dgTabuleiro"/>
 			<p:hotkey bind="s" action="#{jogoController.move('Baixo')}" update="dgTabuleiro" />
 			<p:hotkey bind="d" action="#{jogoController.move('Direita')}" update="dgTabuleiro"/>
 			<p:hotkey bind="w" action="#{jogoController.move('Cima')}" update="dgTabuleiro" />
 
-			<p:dataGrid value="#{jogoController.listaTabuleiro}" var="t" id="dgTabuleiro">
+			<h3 style="align-items: center;">JOGO DO OITO</h3>
+
+			<p:dataGrid value="#{jogoController.listaTabuleiro}" var="t" id="dgTabuleiro" >
 				<p:column>
 					<p:outputLabel value="#{t}" />
 				</p:column>
 			</p:dataGrid>
 			
-			<p:commandButton action="#{jogoController.salvaJogo()}"></p:commandButton>
+			<p:spacer height="200" /> 
+			
+			<p:commandButton value="Salva" action="#{jogoController.salvaJogo()}"></p:commandButton>
 		</h:form>
+		</div>
 	</ui:define>
 </ui:composition>
 </html>
