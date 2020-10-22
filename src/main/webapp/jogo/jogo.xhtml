@@ -18,16 +18,14 @@
 			<h3 style="align-items: center;">JOGO DO OITO</h3>
 
 			<p:dataGrid value="#{jogoController.listaTabuleiro}" var="t" id="dgTabuleiro" >
-				<p:column>
-					<p:outputLabel value="#{t}" />
-				</p:column>
+				
 			</p:dataGrid>
-			
-			<p:spacer height="200" /> 
 			
 			<p:commandButton value="Salva" action="#{jogoController.salvaJogo()}"></p:commandButton>
 		</h:form>
 		</div>
-	</ui:define>
+		
+		<h:outputStylesheet name="jogo.css" library="css" />
+	</ui:define>	
 </ui:composition>
 </html>

@@ -1,0 +1,13 @@
+.ui-datagrid-column {
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #DDD;
+    box-shadow: 0px 0px 5px 0.1px rgba(0,0,0,0.2);
+    text-align: center;
+    
+    transition: 0.5s all;
+}
+
+.ui-datagrid-data{
+	border-spacing: 10px;
+}

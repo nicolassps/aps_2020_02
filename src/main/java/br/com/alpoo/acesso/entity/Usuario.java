@@ -11,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+
+import org.springframework.lang.Nullable;
 
 import br.com.alpoo.jogo.entity.PerguntaSeguranca;
 
@@ -43,6 +46,7 @@ public class Usuario implements Serializable{
 	}
 	
 	@Column(name="usr_name")
+	@NotNull
 	public String getUsrNome() {
 		return usrNome;
 	}
@@ -51,6 +55,7 @@ public class Usuario implements Serializable{
 	}
 	
 	@Column(name="usr_login")
+	@NotNull
 	public String getUsrLogin() {
 		return usrLogin;
 	}
@@ -59,6 +64,7 @@ public class Usuario implements Serializable{
 	}
 	
 	@Column(name="usr_senha")
+	@NotNull
 	public String getUsrSenha() {
 		return usrSenha;
 	}

@@ -9,10 +9,11 @@
 
 <ui:composition template="#{env.template}">
 	<ui:define name="principal">
-		<div style="background-color: white; padding: 50px; border-radius: 10px; display: flex; justify-content: center; min-height: 50vh;">
+		<div
+			style="background-color: white; padding: 50px; border-radius: 10px; display: flex; justify-content: center; min-height: 50vh;">
 			<h:form>
 				<h:panelGrid columns="1" style="width: 100%; text-align:center;">
-
+				
 					<p:column>
 						<p:graphicImage height="100" library="imagens" name="logo_ies.png"></p:graphicImage>
 					</p:column>
@@ -20,29 +21,38 @@
 					<p:separator />
 
 					<p:column>
-						<p:inputText value="#{registroController.usuario.usrNome}" style="width:370px"
-							type="text" id="username" placeholder="Nome"></p:inputText>
+						<p:inputText value="#{registroController.usuario.usrNome}"
+							style="width:370px" type="text" id="username" placeholder="Nome"
+							required="false" requiredMessage="Informe seu nome"></p:inputText>
 					</p:column>
 
 					<p:column>
-						<p:inputText value="#{registroController.usuario.usrLogin}" style="width:370px"
-							type="text" id="userlogin" placeholder="Login"></p:inputText>
+						<p:inputText value="#{registroController.usuario.usrLogin}"
+							style="width:370px" required="false"
+							requiredMessage="Informe o login" type="text" id="userlogin"
+							placeholder="Login"></p:inputText>
 					</p:column>
 
 					<p:column>
-						<p:inputText value="#{registroController.usuario.usrSenha}" style="width:370px"
-							type="password" id="password" placeholder="Senha"></p:inputText>
+						<p:inputText value="#{registroController.usuario.usrSenha}"
+							style="width:370px" required="false"
+							requiredMessage="Confira a senha inserida" type="password"
+							id="password" placeholder="Senha"></p:inputText>
 					</p:column>
 
 					<p:column>
-						<p:inputText value="#{registroController.repetirSenha}" style="width:370px"
-							type="password" id="repeatPassword" placeholder="Repetir Senha"></p:inputText>
+						<p:inputText value="#{registroController.repetirSenha}"
+							style="width:370px" required="false"
+							requiredMessage="Confira a senha inserida" type="password"
+							id="repeatPassword" placeholder="Repetir Senha"></p:inputText>
 					</p:column>
 
 					<p:column>
 						<p:selectOneMenu id="pergunta" style="width:335px"
-							placeholder="Pergunta De Segurança"
+							placeholder="Pergunta De Segurança" required="false"
+							requiredMessage="Pergunta de segurança não selecionada"
 							value="#{registroController.usuario.perguntaSeguranca.pesCodigo}">
+							<f:selectItem itemLabel="Selecione uma pergunta de segurança"></f:selectItem>
 							<f:selectItems
 								value="#{registroController.listaPerguntaSeguranca}"
 								var="perguntaSeguranca"
@@ -53,23 +63,24 @@
 
 					<p:column>
 						<p:inputText type="text" id="resposta" style="width:370px"
+							required="false" requiredMessage="Informe a resposta de segurança"
 							value="#{registroController.usuario.usrRespostaSeguranca}"
 							placeholder="Resposta de segurança"></p:inputText>
 					</p:column>
-					
+
 					<p:separator />
 
-					<p:column> 
+					<p:column>
 						<p:commandButton value="Enviar" id="enviarBtn" style="width:390px"
 							action="#{registroController.salva()}" update=":msgGrowl" />
 					</p:column>
-
+					
 				</h:panelGrid>
-				
+
 			</h:form>
 		</div>
-			</ui:define>
-		<div class="pn-footer">
+	</ui:define>
+	<div class="pn-footer">
 		<i class="fa fa-copyright"></i> IESGF <br />
 	</div>
 

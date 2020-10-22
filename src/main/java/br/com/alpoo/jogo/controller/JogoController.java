@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import br.com.alpoo.acesso.entity.Usuario;
-import br.com.alpoo.acesso.service.UsuarioService;
 import br.com.alpoo.engine.TabuleiroUtils;
 import br.com.alpoo.engine.enums.Movimento;
 import br.com.alpoo.engine.exception.MovimentoException;
@@ -42,6 +41,7 @@ public class JogoController {
 	private void inicializa() {
 		tabuleiro = TabuleiroUtils.initTabuleiro();
 		usuario = sessaoController.getUsuarioLogado();
+		
 		jogo = jogoService.getJogoByUsuario(usuario.getUsrCodigo());
 		if(jogo == null) {
 			listaTabuleiro = new ArrayList<Integer>();
@@ -52,12 +52,15 @@ public class JogoController {
 	}
 
 	public void montaTabuleiro() {
+		if(encerraJogo()) {
+			return;
+		}
+		
 		listaTabuleiro.clear();
 		
 		for (int i = 0; i < TabuleiroUtils.LINES; i++) {
 			for (int j = 0; j < TabuleiroUtils.COLS; j++) {
 				listaTabuleiro.add(tabuleiro[i][j]);
-				encerraJogo();
 			}
 		}
 		
@@ -80,12 +83,15 @@ public class JogoController {
 		}
 	}
 	
-	public void encerraJogo() {
-		if(TabuleiroUtils.jogoEncerrado(tabuleiro)) {
+	public Boolean encerraJogo() {
+		Boolean jogoEncerrado = TabuleiroUtils.jogoEncerrado(tabuleiro);
+		
+		if(jogoEncerrado) {
 			salvaJogo();
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("IESGF", "Jogo concluido"));
-			
 		}
+		
+		return jogoEncerrado;
 	}
 	
 
