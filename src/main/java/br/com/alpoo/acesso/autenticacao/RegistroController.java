@@ -37,7 +37,7 @@ public class RegistroController{
 
 	public void salva() {
 		try {
-			if(repetirSenha == usuario.getUsrSenha()) {
+			if(repetirSenha.equals(usuario.getUsrSenha())) {
 				usuario = usuarioService.salva(usuario);
 				FacesContext.getCurrentInstance().getExternalContext().redirect("login.jsf");
 			}else {
