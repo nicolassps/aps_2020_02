@@ -18,7 +18,7 @@
 			<h3 style="align-items: center;">JOGO DO OITO</h3>
 
 			<p:dataGrid value="#{jogoController.listaTabuleiro}" var="t" id="dgTabuleiro" >
-				
+				<p:outputLabel value="#{t}"></p:outputLabel>
 			</p:dataGrid>
 			
 			<p:commandButton value="Salva" action="#{jogoController.salvaJogo()}"></p:commandButton>
