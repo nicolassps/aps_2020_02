@@ -9,4 +9,6 @@ public interface UsuarioDAO {
 	public Usuario getById(Integer usrCodigo);
 	
 	public Usuario getUsuarioByLoginAndPass(String login, String senha);
+	
+	public Usuario buscaByLogin(String login);
 }

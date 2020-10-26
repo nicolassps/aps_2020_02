@@ -54,12 +54,45 @@ body{
     background-color: var(--main-color);
     transition: all 0.5s;
     
+    font-family: system-ui;
+    
     border: none;
     color: var(--main-light-color);
     border-radius: 5px;
+    
+    width: 100% !important;
 }
 
 .btn-submit:hover{
 	background-color: var(--main-color-h);
 	cursor: pointer;
+}
+
+.btn-esqueci{
+	width: 100%;
+	
+	padding: 10px;
+    background-color: var(--secondary-color);
+    transition: all 0.5s;
+    
+    font-family: system-ui;
+    
+    border: none;
+    color: var(--main-light-color);
+    border-radius: 5px;
+    
+    text-decoration: none;
+}
+
+.btn-esqueci:hover{
+	background-color: var(--secondary-color-h);
+	cursor: pointer;
+}
+
+.tb-botoes-login{
+	width: 100%;
+}
+
+.tb-botoes-login > tbody > tr > td {
+	width: 50%;
 }

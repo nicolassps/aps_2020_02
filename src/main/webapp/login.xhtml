@@ -44,28 +44,77 @@
 						placeholder="Senha"></p:inputText>
 				</p:column>
 
-				<p:column rendered="#{loginController.esqueciSenha}" id="resposta">
-					<p:inputText type="text" id="userPergunta" name="userPergunta"
-						placeholder="Resposta de Segurança"></p:inputText>
+				<p:column>
+					<h:panelGrid columns="2" styleClass="tb-botoes-login">
+						<p:column>
+							<h:commandButton styleClass="btn-submit" value="Enviar"></h:commandButton>
+						</p:column>
+
+
+						<p:column>
+							<a class="btn-esqueci" onclick="PF('dgResetSenha').show()">Esqueci minha senha</a>
+						</p:column>
+					</h:panelGrid>
 				</p:column>
 
 				<p:column>
-					<h:commandButton styleClass="btn-submit" value="Enviar"></h:commandButton>
+					<p:link outcome="registro.xhtml" value="Registrar-se" />
 				</p:column>
-
-				<p:column>
-					<h:commandButton action="#{loginController.esqueciMinhaSenha}" update="resposta" value="esqueci minha senha" />
-				</p:column>
-
-
-				<p:column>
-					<p:link outcome="registro.xhtml" value="Registrar-se"/>
-				</p:column>
-
 
 			</h:panelGrid>
 		</form>
 	</div>
+
+	<p:dialog id="dgResetSenha" widgetVar="dgResetSenha" header="Resetar a senha">
+		<h:form id="frmResetSenha">
+			<h:panelGrid columns="1" style="width: 100%">
+
+				<p:column>
+					<p:inputText value="#{alteracaoSenhaController.usuario.usrLogin}"
+						style="width:370px" required="false"
+						requiredMessage="Informe o login" type="text" id="userlogin"
+						placeholder="Login">
+						<p:ajax event="blur" listener="#{alteracaoSenhaController.buscaUsuario()}" update="frmResetSenha" />
+					</p:inputText>
+				</p:column>
+
+				<p:column>
+					<p:inputText
+						value="#{alteracaoSenhaController.usuario.perguntaSeguranca.pesPergunta}"
+						disabled="true" style="width:370px" required="true"></p:inputText>
+				</p:column>
+
+				<p:column>
+					<p:inputText type="text" id="resposta" style="width:370px"
+						required="false" requiredMessage="Informe a resposta de segurança"
+						value="#{alteracaoSenhaController.usuario.usrRespostaSeguranca}"
+						placeholder="Resposta de segurança"></p:inputText>
+				</p:column>
+
+				<p:column
+					rendered="#{alteracaoSenhaController.usuario.usrCodigo > 0}">
+					<p:inputText value="#{alteracaoSenhaController.usuario.usrSenha}"
+						style="width:370px" required="false"
+						requiredMessage="Confira a senha inserida" type="password"
+						id="password" placeholder="Senha"></p:inputText>
+				</p:column>
+
+				<p:column
+					rendered="#{alteracaoSenhaController.usuario.usrCodigo > 0}">
+					<p:inputText value="#{alteracaoSenhaController.confirmacaoSenha}"
+						style="width:370px" required="false"
+						requiredMessage="Confira a senha inserida" type="password"
+						id="repeatPassword" placeholder="Repetir Senha"></p:inputText>
+				</p:column>
+
+				<p:column>
+					<p:commandButton styleClass="btn-submit" value="Trocar a senha" action="#{alteracaoSenhaController.salvaSenhaNova()}"></p:commandButton>
+				</p:column>
+			</h:panelGrid>
+			
+			<p:growl id="msgReset" autoUpdate="true" sticky="true" showDetail="true"></p:growl>
+		</h:form>
+	</p:dialog>
 
 	<h:outputStylesheet name="css/core-layout.css" library="rio-layout" />
 	<h:outputStylesheet name="css/animate.css" library="rio-layout" />
