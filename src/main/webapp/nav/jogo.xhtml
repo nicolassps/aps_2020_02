@@ -9,7 +9,7 @@
 <ui:composition template="#{env.template}">
 	<ui:define name="principal">
 		<div style="background-color: white; padding: 100px; border-radius: 20px; display: flex; justify-content: center; min-height: 50vh;" >
-		<h:form>
+		<h:form id="frmJogo">
 			<p:hotkey bind="a" action="#{jogoController.move('Esquerda')}" update="dgTabuleiro"/>
 			<p:hotkey bind="s" action="#{jogoController.move('Baixo')}" update="dgTabuleiro" />
 			<p:hotkey bind="d" action="#{jogoController.move('Direita')}" update="dgTabuleiro"/>
@@ -22,6 +22,10 @@
 			</p:dataGrid>
 			
 			<p:commandButton value="Salva" action="#{jogoController.salvaJogo()}"></p:commandButton>
+			
+			<p:commandButton value="Reiniciar" action="#{jogoController.reiniciaJogo()}" 
+			rendered="#{jogoController.encerraJogo()}">
+			</p:commandButton>
 		</h:form>
 		</div>
 		

@@ -7,7 +7,7 @@ import br.com.alpoo.jogo.entity.Jogo;
 
 public interface JogoService {
 
-	public Jogo salva(List<Integer> tabuleiro, Usuario usuario, Jogo jogo);
+	public Jogo salva(List<Integer> tabuleiro, Usuario usuario, Jogo jogo, Boolean reiniciar);
 	
 	public Jogo getJogoByUsuario(Integer usrCodigo);
 	

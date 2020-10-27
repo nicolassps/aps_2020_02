@@ -22,13 +22,13 @@ public class JogoServiceImpl implements JogoService {
 
 	@Override
 	@Transactional
-	public Jogo salva(List<Integer> tabuleiro, Usuario usuario, Jogo jogo) {
-		if(jogo == null) {
+	public Jogo salva(List<Integer> tabuleiro, Usuario usuario, Jogo jogo, Boolean reiniciar) {
+		if(jogo == null || reiniciar == true) {
 			jogo = new Jogo();
 			jogo.setJogDataCriacao(new Date());
 		}
 		
-		byte[] arr = new byte[tabuleiro.size() + 1];
+		byte[] arr = new byte[tabuleiro.size()+1];
 		int index = 0;
 		for(Integer r : tabuleiro) {
 			arr[index] = r.byteValue();
