@@ -56,4 +56,16 @@ public class UsuarioServiceImpl implements UsuarioService {
 		
 	}
 
+	@Override
+	public Usuario buscaByLogin(String login) {
+		Usuario usr = dao.buscaByLogin(login);
+		
+		if(usr != null) {
+			usr.setUsrSenha(null);
+			usr.setUsrRespostaSeguranca(null);
+		}
+		
+		return usr;
+	}
+
 }

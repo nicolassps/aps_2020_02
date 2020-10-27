@@ -13,6 +13,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.validator.constraints.UniqueElements;
 import org.springframework.lang.Nullable;
 
 import br.com.alpoo.jogo.entity.PerguntaSeguranca;
@@ -54,7 +55,7 @@ public class Usuario implements Serializable{
 		this.usrNome = usrNome;
 	}
 	
-	@Column(name="usr_login")
+	@Column(name="usr_login", unique = true)
 	@NotNull
 	public String getUsrLogin() {
 		return usrLogin;

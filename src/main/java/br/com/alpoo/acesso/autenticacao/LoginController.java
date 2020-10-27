@@ -16,8 +16,6 @@ import br.com.alpoo.jogo.controller.SessaoController;
 @Component(value = "loginController")
 public class LoginController implements AuthenticationProvider {
 
-	private Boolean esqueciSenha = Boolean.FALSE;
-	
 	@Autowired
 	UsuarioService usuarioService;
 
@@ -31,7 +29,6 @@ public class LoginController implements AuthenticationProvider {
 
 		String name = authentication.getName();
 		String password = authentication.getCredentials().toString();
-		String esqueciSenha = authentication.getName();
 		Usuario u =null;
 
 		if ((u = usuarioService.getUsuarioByLoginAndPass(name, password)) != null) {
@@ -46,18 +43,5 @@ public class LoginController implements AuthenticationProvider {
 	public boolean supports(Class<?> authentication) {
 		return authentication.equals(UsernamePasswordAuthenticationToken.class);
 	}
-	
-	public Boolean esqueciMinhaSenha() {
-		return esqueciSenha;
-	}
-
-	public Boolean getEsqueciSenha() {
-		return esqueciSenha;
-	}
-
-	public void setEsqueciSenha(Boolean esqueciSenha) {
-		this.esqueciSenha = esqueciSenha;
-	}
-
 	
 }

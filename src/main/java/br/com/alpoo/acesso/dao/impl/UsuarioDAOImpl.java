@@ -3,6 +3,7 @@ package br.com.alpoo.acesso.dao.impl;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 import org.springframework.stereotype.Repository;
@@ -33,6 +34,21 @@ public class UsuarioDAOImpl extends GenericDAOImpl<Usuario, Serializable> implem
 		
 		List<Usuario> listaUsuario = query.getResultList();
 		return listaUsuario.size() > 0 ? listaUsuario.get(0) : null;
+	}
+
+	@Override
+	public Usuario buscaByLogin(String login) {
+		Query query = em.createQuery(" from Usuario u where u.usrLogin = :login");
+		query.setParameter("login", login);
+		
+		try {
+			return (Usuario) query.getSingleResult();
+		} catch (NoResultException e) {
+			return null;
+		} catch(Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }
