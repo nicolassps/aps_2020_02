@@ -1,8 +1,8 @@
 .ui-datagrid-column {
     padding: 20px;
     border-radius: 10px;
-    border: 1px solid rgb(255, 255, 255);
-    box-shadow: 1px -1px 9px 8px rgba(0,0,0,0.2);
+    border: 1px solid #DDD;
+    box-shadow: 0px 0px 5px 0.1px rgba(0,0,0,0.2);
     text-align: center;
     
     transition: 0.5s all;
@@ -11,8 +11,3 @@
 .ui-datagrid-data{
 	border-spacing: 10px;
 }
-
-.ui-panelgrid tbody tr td {
-    border: solid 10px white!important
-}
-

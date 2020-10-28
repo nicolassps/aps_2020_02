@@ -8,50 +8,28 @@
 
 <ui:composition template="#{env.template}">
 	<ui:define name="principal">
-		<div
-			style="background-color: white; padding: 100px; border-radius: 20px; display: flex; justify-content: center; min-height: 50vh;">
-			<h:form id="frmJogo">
-				<p:hotkey bind="a" action="#{jogoController.move('Esquerda')}"
-					update="dgTabuleiro" />
-				<p:hotkey bind="s" action="#{jogoController.move('Baixo')}"
-					update="dgTabuleiro" />
-				<p:hotkey bind="d" action="#{jogoController.move('Direita')}"
-					update="dgTabuleiro" />
-				<p:hotkey bind="w" action="#{jogoController.move('Cima')}"
-					update="dgTabuleiro" />
+		<div style="background-color: white; padding: 100px; border-radius: 20px; display: flex; justify-content: center; min-height: 50vh;" >
+		<h:form id="frmJogo">
+			<p:hotkey bind="a" action="#{jogoController.move('Esquerda')}" update="dgTabuleiro"/>
+			<p:hotkey bind="s" action="#{jogoController.move('Baixo')}" update="dgTabuleiro" />
+			<p:hotkey bind="d" action="#{jogoController.move('Direita')}" update="dgTabuleiro"/>
+			<p:hotkey bind="w" action="#{jogoController.move('Cima')}" update="dgTabuleiro" />
 
-				<p:panelGrid columns="1" style="background-color: white;">
-					<f:facet name="header">
-						<span class="#0288D1 Fs30" style="color: rebeccapurple;">JOGO
-							DO OITO</span>
-					</f:facet>
-					<p:column>
-						<p:dataGrid value="#{jogoController.listaTabuleiro}" var="t"
-							id="dgTabuleiro">
-							<p:outputLabel value="#{t}"></p:outputLabel>
-						</p:dataGrid>
-					</p:column>
+			<h3 style="align-items: center;">JOGO DO OITO</h3>
 
-					<p:spacer height="10" />
-
-					<p:column>
-						<div align="center">
-							<p:commandButton value="Salva"
-								action="#{jogoController.salvaJogo()}" update="msgGrowl"></p:commandButton>
-
-							<p:spacer width="10" />
-		
-							<p:commandButton value="Reiniciar"
-								action="#{jogoController.reiniciaJogo()}"
-								rendered="#{jogoController.encerraJogo()}" update="msgGrowl">
-							</p:commandButton>
-						</div>
-					</p:column>
-				</p:panelGrid>
-			</h:form>
+			<p:dataGrid value="#{jogoController.listaTabuleiro}" var="t" id="dgTabuleiro" >
+				<p:outputLabel value="#{t}"></p:outputLabel>
+			</p:dataGrid>
+			
+			<p:commandButton value="Salva" action="#{jogoController.salvaJogo()}"></p:commandButton>
+			
+			<p:commandButton value="Reiniciar" action="#{jogoController.reiniciaJogo()}" 
+			rendered="#{jogoController.encerraJogo()}">
+			</p:commandButton>
+		</h:form>
 		</div>
-
+		
 		<h:outputStylesheet name="jogo.css" library="css" />
-	</ui:define>
+	</ui:define>	
 </ui:composition>
 </html>
