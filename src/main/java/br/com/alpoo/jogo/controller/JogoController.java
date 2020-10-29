@@ -47,12 +47,23 @@ public class JogoController {
 		usuario = sessaoController.getUsuarioLogado();
 		
 		jogo = jogoService.getJogoByUsuario(usuario.getUsrCodigo());
-		if(jogo != null) {
+		if(jogo != null && jogo.getJogEstado() != null) {
+			
 			listaTabuleiro = jogoService.retornaListaJogo(jogo.getJogEstado());
-		
+			
+			int k = 0;
+			for (int i = 0; i < TabuleiroUtils.LINES; i++) {
+				for (int j = 0; j < TabuleiroUtils.COLS; j++) {
+					tabuleiro[i][j] = listaTabuleiro.get(k);
+					k++;
+				}
+			}
+			montaTabuleiro();
+			
 		}else {
 			listaTabuleiro = new ArrayList<Integer>();
 			montaTabuleiro();
+			
 		}
 	}
 
@@ -69,7 +80,7 @@ public class JogoController {
 	
 	public void move(String direcao) {
 		try {
-			TabuleiroUtils.movimentoTabuleiro(tabuleiro, Movimento.valueOf(direcao.toUpperCase()));
+ 			tabuleiro = TabuleiroUtils.movimentoTabuleiro(tabuleiro, Movimento.valueOf(direcao.toUpperCase()));
 			montaTabuleiro();
 		} catch (MovimentoException e) {
 			
@@ -79,6 +90,7 @@ public class JogoController {
 	public void salvaJogo() {
 		try {
 			jogo = jogoService.salva(listaTabuleiro, usuario, jogo, jogoReiniciado);
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("IESGF", "Jogo salvo"));
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
