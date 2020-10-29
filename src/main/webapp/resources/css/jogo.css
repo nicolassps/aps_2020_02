@@ -15,3 +15,8 @@
 .ui-panelgrid tbody tr td {
     border: solid 10px white!important
 }
+
+#layout-wrapper{
+	height: 100% !important;;
+	width: 100%;
+}

@@ -34,7 +34,7 @@ public class JogoServiceImpl implements JogoService {
 			arr[index] = r.byteValue();
 			index++;
 		}
-		System.out.println(arr);
+		
 		jogo.setJogEstado(arr);
 		jogo.setJogDataAtualizacao(new Date());
 		jogo.setUsuario(usuario);
