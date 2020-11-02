@@ -26,6 +26,7 @@ public class AlteracaoSenhaController {
 		usuario = usuarioService.buscaByLogin(usuario.getUsrLogin());
 		
 		if(usuario == null) {
+			usuario = new Usuario();
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("IESGF", "Usuário não encontrado"));
 		}
 	}
